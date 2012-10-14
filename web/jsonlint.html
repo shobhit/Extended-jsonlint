@@ -1,0 +1,173 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8" /> 
+    <title>JSON Lint</title> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <script src="json2.js"></script>
+    <script src="jsonlint.js"></script>
+    <script>
+
+    function repeat(s, count) {
+        return new Array(count + 1).join(s);
+    }
+
+    function formatJson(json) {
+        var i           = 0,
+            il          = 0,
+            tab         = "    ",
+            newJson     = "",
+            indentLevel = 0,
+            inString    = false,
+            currentChar = null;
+
+        for (i = 0, il = json.length; i < il; i += 1) { 
+            currentChar = json.charAt(i);
+
+            switch (currentChar) {
+            case '{': 
+            case '[': 
+                if (!inString) { 
+                    newJson += currentChar + "<br/><br/>" + repeat(tab, indentLevel + 1);
+                    indentLevel += 1; 
+                } else { 
+                    newJson += currentChar; 
+                }
+                break; 
+            case '}': 
+            case ']': 
+                if (!inString) { 
+                    indentLevel -= 1; 
+                    newJson += "<br/><br/>" + repeat(tab, indentLevel) + currentChar; 
+                } else { 
+                    newJson += currentChar; 
+                } 
+                break; 
+            case ',': 
+                if (!inString) { 
+                    newJson += ",<br/><br/>" + repeat(tab, indentLevel); 
+                } else { 
+                    newJson += currentChar; 
+                } 
+                break; 
+            case ':': 
+                if (!inString) { 
+                    newJson += ": "; 
+                } else { 
+                    newJson += currentChar; 
+                } 
+                break; 
+            case ' ':
+            case "\n":
+            case "\t":
+                if (inString) {
+                    newJson += currentChar;
+                }
+                break;
+            case '"': 
+                if (i > 0 && json.charAt(i - 1) !== '\\') {
+                    inString = !inString; 
+                }
+                newJson += currentChar; 
+                break;
+            default: 
+                newJson += currentChar; 
+                break;                    
+            } 
+        } 
+
+        return newJson; 
+    }
+
+    function makeLinkClickable(jsonStr)
+    {        
+       if (jsonStr.trim().length  == 0)
+          return jsonStr;
+        try 
+        {
+            var result = jsonlint.parse(jsonStr);
+            for (var k in result)
+            {                
+                if (typeof(result[k]) == "object")
+                {
+                  result[k] = jsonlint.parse(makeLinkClickable(JSON.stringify(result[k], null, "  ")));
+                }  
+                  
+                else
+                {
+                  var value = result[k];
+                  if (typeof(value) != typeof(''))
+                      continue;
+                  if ((value.indexOf('http') !== -1) || (value.indexOf('https') !== -1) || (value.indexOf('www') !== -1))
+                  {
+                      
+                      result[k] = "<a href='" + result[k] +"' target = '_blank'> <img style = 'max-width: 300px; max-height: 300px;' src='" + result[k] + "' alt= '' </img> " + result[k] + " </a>";                                       
+                  }                  
+                }
+            }
+            result = JSON.stringify(result);
+            return result;
+        }
+        catch(e)
+        {            
+            alert(e);
+            alert(value);
+            return jsonStr
+        }
+
+    }
+    </script>
+    <script>
+      window.onload = function () {
+        document.getElementById("button").onclick = function () {
+          try {
+            var result = jsonlint.parse(document.getElementById("source").value);
+            if (result) {
+              document.getElementById("result").innerHTML = "JSON is valid!";
+              document.getElementById("result").className = "pass";
+              result = JSON.stringify(result, null, "  ");              
+              result = makeLinkClickable(result);
+              result = formatJson(result);              
+              document.getElementById("alternate1").innerHTML = result;               
+            }
+          } catch(e) {
+            document.getElementById("result").innerHTML = e;
+            document.getElementById("result").className = "fail";
+          }
+        };
+      }
+    </script>
+    <style>
+      body {font-family: sans-serif;}
+      #result {
+        padding: 1em;
+      }
+      .pass {
+        background-color: #efe;
+        color: #393;
+        border: 2px solid #393;
+      }
+      .fail {
+        background-color: #fee;
+        color: #933;
+        border: 2px solid #933;
+      }
+      textarea { width: 100%; }
+    </style>
+</head> 
+<body> 
+  <h1>JSON Lint</h1> 
+  <p>A pure JavaScript version of the service provided at <a href="http://jsonlint.com/">jsonlint.com</a>.</p>
+  <textarea id="source" rows="20" cols="50">
+
+  </textarea>
+  <div id='alternate'></div>
+  <pre id='alternate1'></pre>
+  <p>
+    <button id="button">Validate</button>
+  </p>
+  <h2>Results</h2>
+  <pre id="result"></pre>
+  <p><a href="http://github.com/zaach/jsonlint">project on github</a></p> 
+</body> 
+</html> 
