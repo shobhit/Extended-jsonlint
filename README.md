@@ -1,3 +1,5 @@
+Author : Gaurav Jain
+
 Extended-jsonlint
 =================
 
