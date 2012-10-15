@@ -1,7 +1,8 @@
-Author : Gaurav Jain
+Author : Shobhit Jain
 
 ##Extended-jsonlint
 
+Extended jsonlint using Twitter bootstrap
 
 Json validator, formatter, make links clickable, opens them in a new tab and also renders images.
 
