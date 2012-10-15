@@ -1,11 +1,19 @@
 <!doctype html> 
 <html lang="en"> 
 <head> 
-    <meta charset="utf-8" /> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content=""> 
     <title>JSON Lint</title> 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
     <script src="json2.js"></script>
     <script src="jsonlint.js"></script>
+    <script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../scripts/bootstrap-responsive.js"></script>
+    <script type="text/javascript" src="../scripts/bootstrap-tab.js"></script>
+    <link rel="stylesheet" type="text/css" href="../scripts/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../scripts/docs.css">
     <script>
 
     function repeat(s, count) {
@@ -144,30 +152,63 @@
       }
       .pass {
         background-color: #efe;
-        color: #393;
-        border: 2px solid #393;
+        color: black;
+        border: 14px solid #695EBA;
+        font-size: 24px;
+        font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
       }
       .fail {
-        background-color: #fee;
-        color: #933;
-        border: 2px solid #933;
+       background-color: #efe;
+        color: black;
+        border: 14px solid #695EBA;
+        font-size: 24px;
+        font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
       }
-      textarea { width: 100%; }
+      #source{
+
+        width: 100%;
+
+      }
     </style>
 </head> 
 <body> 
-  <h1>JSON Lint</h1> 
+  <!-- <h1>JSON Lint</h1> 
   <p>A pure JavaScript version of the service provided at <a href="http://jsonlint.com/">jsonlint.com</a>.</p>
-  <textarea id="source" rows="20" cols="50">
+   -->
+  
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">JsonLint Service</a>
+    <ul class="nav">
+      <li class="active"><a href="#">Home</a></li>
+       </ul>
+  </div>
+</div>
 
-  </textarea>
+  <div class="hero-unit">
+    <h1 style="margin-left: 40%;">Json Lint</h1>
+  <p style="margin-left: 40%;">Cool Jsonlint using Twitter Bootstrap</p>
+  <textarea id ="source" rows="20" cols="500" ></textarea>
+</div>
+
+<div class="well">
+<h1 style="font-size:24px;line-height:7px;">Parsed Results</h1>
+</div>
   <div id='alternate'></div>
   <pre id='alternate1'></pre>
-  <p>
-    <button id="button">Validate</button>
-  </p>
-  <h2>Results</h2>
+  
+   <p>
+<a id="button" class="btn btn-primary btn-large" style="padding: 17px 95px;margin-left: 40%;">Validate</a>
+</p>
+   
+
+<div class="well">
+  <h1 style="line-height:7px;font-size:24px;">Results</h1>
+</div>
+  
   <pre id="result"></pre>
-  <p><a href="http://github.com/zaach/jsonlint">project on github</a></p> 
+
+
+  
 </body> 
 </html> 
