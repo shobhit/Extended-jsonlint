@@ -6,6 +6,11 @@ Json validator, formatter, make links clickable, opens them in a new tab and als
 
 ## Works in browser, open the file in browser, copy paste your json in the textarea and press validate.
 
+## file to be opened in browser
+path-to-folder/Extended-jsonlint/web/jsonlint.html
+
+
+##Works best in firefox, a small bug comes while using in chrome, will be fixed soon.
 
 ## MIT License
 
