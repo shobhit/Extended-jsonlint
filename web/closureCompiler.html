@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+   <!--    <meta http-equiv="content-type" content="text/html; charset=utf-8" /> -->
+   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+      <script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="../scripts/bootstrap.css">
+
+<style type="text/css">
+#source{
+
+        width: 100%;
+
+      }
+
+
+</style>    
+      <script>
+
+$(function() {
+
+
+    $("#button").click(function() {
+        var name = $("textarea.codeSpace").val();
+
+        var dataString = 'js_code=' + encodeURIComponent(name) + '&output_info=' + "compiled_code" + '&output_format=' + "json" + '&compilation_level=' + "WHITESPACE_ONLY" + "&output_info=" + 'warnings' + "&output_info=" + 'errors' + "&output_info=" + 'statistics';
+
+
+        $.ajax({
+
+            type: "POST",
+
+            url: "http://closure-compiler.appspot.com/compile",
+
+            data: dataString,
+
+            success: function(data) {
+                console.log(decodeURIComponent(data));
+                $("#result").text(data);
+            }
+
+        });
+
+        return false;
+
+    });
+
+});
+</script>
+</head>
+<body>
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">JsonLint Service</a>
+    <ul class="nav">
+      <li ><a href="jsonlint.html">Json Lint</a></li>
+      <li class="active"><a href="#">JS Minify</a></li>
+       </ul>
+  </div>
+</div>
+
+
+  <form action="" id="searchForm">
+  <div class="hero-unit">
+    <h1 style="margin-left: 40%;">JS Minify</h1>
+  <p style="margin-left: 40%;">Cool Javascript Minify using Twitter Bootstrap</p>
+  <textarea id ="source" rows="20" cols="500" class="codeSpace" name="js_code"></textarea>
+ <!--  <input type="submit" value="Search" class="button" /> -->
+  <p>
+<a id="button" class="btn btn-primary btn-large" style="padding: 17px 95px;margin-left: 40%;">Validate</a>
+</p>
+   
+
+  </div>
+  </form>
+  <div class="well">
+  <div id="result"></div>
+  </div>
+  </body>
+</html>
