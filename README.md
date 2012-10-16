@@ -6,6 +6,9 @@ Extended jsonlint using Twitter bootstrap
 
 Json validator, formatter, make links clickable, opens them in a new tab and also renders images.
 
+Javascript Compressor on twitter bootstrap
+
+minify your JS files 
 
 
 `Works in browser, open the file in browser, copy paste your json in the textarea and press validate.`
