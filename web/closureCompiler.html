@@ -1,20 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
-   <!--    <meta http-equiv="content-type" content="text/html; charset=utf-8" /> -->
    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
       <script type="text/javascript" src="../scripts/bootstrap.min.js"></script>
       <link rel="stylesheet" type="text/css" href="../scripts/bootstrap.css">
+      <link rel="stylesheet" type="text/css" href="../scripts/main.css">
 
 <style type="text/css">
 #source{
-
         width: 100%;
-
       }
-
-
 </style>    
       <script>
 
@@ -48,6 +44,8 @@ $(function() {
 
 });
 </script>
+
+
 </head>
 <body>
 <div class="navbar">
@@ -67,8 +65,30 @@ $(function() {
   <p style="margin-left: 40%;">Cool Javascript Minify using Twitter Bootstrap</p>
   <textarea id ="source" rows="20" cols="500" class="codeSpace" name="js_code"></textarea>
 
+
+<div>
+    <div class="nonom" style="font-family: helvetica;font-size: 15px;margin-left: 44%;">Simple Optimizations</div>
+<div class="slideThree">
+  <input type="checkbox" value="None" id="slideThree" name="check" />
+  <label for="slideThree"></label>
+</div>
+</div>
+
+<div>
+    <div class=" checkbox inline">Pretty Print</div>
+    <input type="checkbox" id="checkbox-2-1" class="regular-checkbox big-checkbox" /><label for="checkbox-2-1"></label>
+    <div class=" checkbox inline">Print Input Delimiter</div>
+    <input type="checkbox" id="checkbox-2-2" class="regular-checkbox big-checkbox" /><label for="checkbox-2-2"></label>
+    <div class=" checkbox inline">Use Closure Library</div>
+    <input type="checkbox" id="checkbox-2-3" class="regular-checkbox big-checkbox" /><label for="checkbox-2-3"></label>
+    <div class=" checkbox inline">Options</div>
+    <input type="checkbox" id="checkbox-2-4" class="regular-checkbox big-checkbox" /><label for="checkbox-2-4"></label>
+</div>
+
+
+
   <p>
-<a id="button" class="btn btn-primary btn-large" style="padding: 17px 95px;margin-left: 40%;">Validate</a>
+<a id="button" class="btn btn-primary btn-large" style="padding: 17px 95px;margin-left: 40%;">Minify.it</a>
 </p>
    
 
